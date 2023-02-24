@@ -2,16 +2,27 @@
 """
 Created on Sat Apr 16 17:50:34 2022
 
-@author: XYZW
+@author: Theodor Munteanu
 """
 
 import numpy as np
 def currency_swap_value(FV_for,FV_dom,c_for,c_dom,r_for,r_dom,T,X0,freq = 1):
     """Principals are exchanged
     A domestic coupon rate is being exchanged for a foreign coupon rate
-    Only continuous compounding is being taken into consideration"""
+    Only continuous compounding is being taken into consideration
+    
+    Parameters:
+    -----------
+         FV_for = face value in the foreign currency
+         
+         FV_dom =  face value in the domestic currency
+         
+         c_for = coupon in the foreign currency
+         
+         c_dom = coupon in the domestic currency
+         
+    """
     n = int(T*freq)
-    import numpy as np
     times = np.array([1/freq * (i+1) for i in range(n)])
     pmts_for = [(c_for/freq + (i==n)) * np.exp(-times[i-1]*r_for)*FV_for 
                 for i in range(1,n+1)]
